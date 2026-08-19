@@ -8,6 +8,12 @@
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
 license="${mod_license}"
 
+# The mod loader type to load this mod.
+modLoader="javafml" #mandatory
+
+# The version range of the mod loader.
+loaderVersion="${loader_version_range}" #mandatory
+
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 
