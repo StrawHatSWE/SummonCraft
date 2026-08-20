@@ -31,6 +31,10 @@ public class PlayerSummonData {
         }
     }
 
+    public void removeSummon(UUID summon) {
+        summons.remove(summon);
+    }
+
     public int getActualMaximum() {
         return baseMaxSummons;
     }

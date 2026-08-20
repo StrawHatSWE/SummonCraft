@@ -1,5 +1,9 @@
 package net.StrawHatSWE.SummonCraft.Entities.Mobs;
 
+import net.StrawHatSWE.SummonCraft.Attachments.ModAttachments;
+import net.StrawHatSWE.SummonCraft.Attachments.PlayerSummonData;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -10,6 +14,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.attachment.AttachmentType;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -39,7 +44,11 @@ public abstract class PlayerSummon extends PathfinderMob {
             return this.ownerUUID != null && this.ownerUUID.equals(otherSummon.ownerUUID);
         }
 
-        return super.isAlliedTo(entity) && entity instanceof Enemy;
+        if (!(entity instanceof Enemy)) {
+            return true;
+        }
+
+        return super.isAlliedTo(entity);
     }
 
     @Override
@@ -63,5 +72,27 @@ public abstract class PlayerSummon extends PathfinderMob {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean canBeSeenAsEnemy() {
+        return false;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (player.isCrouching() && hand == InteractionHand.MAIN_HAND) {
+
+            if (!this.level().isClientSide() && this.getOwnerUUID() == player.getUUID()) {
+                PlayerSummonData summonData = player.getData(ModAttachments.SUMMON_DATA);
+
+                this.discard();
+                summonData.removeSummon(this.getUUID());
+
+                return InteractionResult.sidedSuccess(this.level().isClientSide());
+            }
+        }
+
+        return super.mobInteract(player, hand);
     }
 }
