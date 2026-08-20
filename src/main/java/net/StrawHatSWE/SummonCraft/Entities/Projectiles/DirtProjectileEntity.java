@@ -24,19 +24,13 @@ public class DirtProjectileEntity extends SlingshotProjectileEntity implements I
                 ammoStack,
                 weaponStack
         );
+
+        this.setBaseDamage(1.0D);
     }
 
     @Override
     protected ItemStack getDefaultPickupItem() {
         return null;
-    }
-
-    @Override
-    protected void onHitEntity(EntityHitResult result) {
-        super.onHitEntity(result);
-
-        Entity entity = result.getEntity();
-        entity.hurt(this.damageSources().thrown(this, this.getOwner()), 2);
     }
 
     @Override

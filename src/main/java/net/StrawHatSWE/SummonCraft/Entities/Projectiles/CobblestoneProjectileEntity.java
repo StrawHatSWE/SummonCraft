@@ -25,19 +25,13 @@ public class CobblestoneProjectileEntity extends SlingshotProjectileEntity imple
                 ammoStack,
                 weaponStack
         );
+
+        this.setBaseDamage(2.0D);
     }
 
     @Override
     protected ItemStack getDefaultPickupItem() {
         return null;
-    }
-
-    @Override
-    protected void onHitEntity(EntityHitResult result) {
-        super.onHitEntity(result);
-
-        Entity entity = result.getEntity();
-        entity.hurt(this.damageSources().thrown(this, this.getOwner()), 4);
     }
 
     @Override

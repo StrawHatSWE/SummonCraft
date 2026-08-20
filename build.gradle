@@ -185,3 +185,15 @@ idea {
         downloadJavadoc = true
     }
 }
+
+tasks.register('cleanGenerated', Delete) {
+    delete 'src/generated/resources'
+}
+
+tasks.named('runData') {
+    dependsOn tasks.named('cleanGenerated')
+}
+
+tasks.withType(Copy).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

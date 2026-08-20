@@ -1,6 +1,0 @@
-{
-  "parent": "summoncraft:item/slingshot",
-  "textures": {
-    "layer0": "summoncraft:item/slingshot_charging_0"
-  }
-}

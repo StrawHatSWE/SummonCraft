@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SlingshotItem extends ProjectileWeaponItem {
+public class SlingshotItem extends BowItem {
 
     public static final Predicate<ItemStack> SLINGSHOT_AMMO = itemStack ->
             itemStack.is(Items.DIRT) || itemStack.is(Items.COBBLESTONE);
@@ -50,13 +50,18 @@ public class SlingshotItem extends ProjectileWeaponItem {
                 if ((double) power >= 0.1) {
                     List<ItemStack> list = draw(stack, ammoStack, player);
 
-                    System.out.println("SlingshotItem: " + list); // [1 minecraft:arrow]
-                    System.out.println("player.getUsedItemHand(): " + player.getUsedItemHand()); // MAIN_HAND
-                    System.out.println("stack: " + stack); // 1 summoncraft:slingshot
-                    System.out.println("ammoStack: " + ammoStack); // dirt
-
                     if (level instanceof ServerLevel serverLevel && !list.isEmpty()) {
-                        this.shoot(serverLevel, player, player.getUsedItemHand(), stack, list, power * 3.0F, 1.0F, power == 1.0F, null);
+                        this.shoot(
+                                serverLevel,
+                                player,
+                                player.getUsedItemHand(),
+                                stack,
+                                list,
+                                power * 1.5F,
+                                1.0F,
+                                power == 1.0F,
+                                null
+                        );
                     }
 
                     level.playSound(
@@ -88,41 +93,9 @@ public class SlingshotItem extends ProjectileWeaponItem {
         projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + angle, 0.0F, velocity, inaccuracy);
     }
 
-    public static float getPowerForTime(int holdDuration) {
-        float force = (float) holdDuration / 20.0F;
-        force = (force * force + force * 2.0F) / 6.0F;
-        if (force > 1.0F) {
-            force = 1.0F;
-        }
-        return force;
-    }
-
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
-    }
-
-    @Override
-    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
-
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        boolean hasAmmo = !player.getProjectile(stack).isEmpty();
-
-        InteractionResultHolder<ItemStack> override = EventHooks.onArrowNock(stack, level, player, hand, hasAmmo);
-        if (override != null) {
-            return override;
-        }
-
-        if (!player.hasInfiniteMaterials() && !hasAmmo) {
-            return InteractionResultHolder.fail(stack);
-        } else {
-            player.startUsingItem(hand);
-            return InteractionResultHolder.consume(stack);
-        }
     }
 
     @Override
@@ -138,5 +111,10 @@ public class SlingshotItem extends ProjectileWeaponItem {
     @Override
     public int getDefaultProjectileRange() {
         return 10;
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
     }
 }
