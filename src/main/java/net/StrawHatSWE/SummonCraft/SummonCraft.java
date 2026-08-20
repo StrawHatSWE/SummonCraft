@@ -1,5 +1,6 @@
 package net.StrawHatSWE.SummonCraft;
 
+import net.StrawHatSWE.SummonCraft.Attachments.ModAttachments;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
 import org.slf4j.Logger;
@@ -44,6 +45,7 @@ public class SummonCraft {
 
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus); // Register entity types
+        ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -53,6 +55,7 @@ public class SummonCraft {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
             event.accept(ModItems.SLINGSHOT.get());
+            event.accept(ModItems.SLINGSHOTTER_STAFF.get());
         }
     }
 

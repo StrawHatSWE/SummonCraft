@@ -1,5 +1,7 @@
 package net.StrawHatSWE.SummonCraft.Items;
 
+import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
+import net.StrawHatSWE.SummonCraft.Items.Staffs.SlingshotterStaffItem;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -13,5 +15,11 @@ public class ModItems {
             "slingshot",
             SlingshotItem::new, // Passes properties directly to SlingshotItem(Item.Properties properties)
             new Item.Properties().durability(256)
+    );
+
+    public static final DeferredItem<Item> SLINGSHOTTER_STAFF = ITEMS.registerItem(
+            "slingshotter_staff",
+            properties -> new SlingshotterStaffItem(ModEntities.SLINGSHOTTER, properties),
+            new Item.Properties()
     );
 }

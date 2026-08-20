@@ -42,6 +42,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .predicate(ResourceLocation.withDefaultNamespace("pull"), 0.9F)
                 .model(pulling2)
                 .end();
+
+        handheldItem(ModItems.SLINGSHOTTER_STAFF.get());
     }
 
     // Helper method to generate model JSON files for custom texture names

@@ -1,5 +1,6 @@
 package net.StrawHatSWE.SummonCraft.Entities;
 
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slingshotter;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.CobblestoneProjectileEntity;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.DirtProjectileEntity;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
@@ -28,5 +29,14 @@ public class ModEntities {
                             .clientTrackingRange(4)
                             .updateInterval(10)
                             .build("dirt_projectile")
+            );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Slingshotter>> SLINGSHOTTER =
+            ENTITY_TYPES.register("slingshotter", () ->
+                    EntityType.Builder.<Slingshotter>of(Slingshotter::new, MobCategory.MISC)
+                            .sized(0.6F, 1.99F)
+                            .clientTrackingRange(8)
+                            .updateInterval(3)
+                            .build("slingshotter")
             );
 }

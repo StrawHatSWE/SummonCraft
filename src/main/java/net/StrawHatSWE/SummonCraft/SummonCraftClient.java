@@ -1,7 +1,9 @@
 package net.StrawHatSWE.SummonCraft;
 
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.SlingshotterRenderer;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
+import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -54,5 +56,6 @@ public class SummonCraftClient {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.COBBLESTONE_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.DIRT_PROJECTILE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.SLINGSHOTTER.get(), SlingshotterRenderer::new);
     }
 }
