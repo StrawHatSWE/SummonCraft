@@ -1,5 +1,7 @@
 package net.StrawHatSWE.SummonCraft;
 
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.BabySkeletonModel;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.ModLayers;
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.SlingshotterRenderer;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
@@ -57,5 +59,10 @@ public class SummonCraftClient {
         event.registerEntityRenderer(ModEntities.COBBLESTONE_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.DIRT_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.SLINGSHOTTER.get(), SlingshotterRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ModLayers.BABY_SKELETON_LAYER, BabySkeletonModel::createBodyLayer);
     }
 }

@@ -10,10 +10,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -23,29 +25,6 @@ public class SlingshotterStaffItem extends SummonStaffItem {
     public SlingshotterStaffItem(Supplier<? extends EntityType<? extends PlayerSummon>> summonEntities, Properties properties) {
         super(summonEntities, properties);
     }
-
-    /*
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-
-        if (!level.isClientSide()) {
-            PlayerSummon summon = this.summonEntities.getFirst().get().create(level);
-
-            assert summon != null;
-
-            Vec3 spawnPos = player.position().add(player.getLookAngle().scale(2.0D));
-            summon.moveTo(spawnPos.x, spawnPos.y, spawnPos.z, player.getYRot(), 0.0F);
-
-            summon.setOwner(player);
-
-            level.addFreshEntity(summon);
-
-            System.out.println("Summoned " + summon.getClass().getSimpleName() + " at " + spawnPos);
-        }
-
-        return super.use(level, player, hand);
-    }
-     */
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
@@ -61,6 +40,8 @@ public class SlingshotterStaffItem extends SummonStaffItem {
             BlockPos clickedPos = context.getClickedPos();
             Direction clickedFace = context.getClickedFace();
             BlockPos targetPos = clickedPos.relative(clickedFace);
+
+            summon.finalizeSpawn((ServerLevelAccessor) level, level.getCurrentDifficultyAt(targetPos), MobSpawnType.MOB_SUMMONED, null);
 
             summon.moveTo(
                     targetPos.getX() + 0.5D,

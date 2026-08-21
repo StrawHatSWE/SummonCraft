@@ -34,7 +34,7 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<Slingshotter>> SLINGSHOTTER =
             ENTITY_TYPES.register("slingshotter", () ->
                     EntityType.Builder.<Slingshotter>of(Slingshotter::new, MobCategory.MISC)
-                            .sized(0.6F, 1.99F)
+                            .sized(0.6F, 0.99F)
                             .clientTrackingRange(8)
                             .updateInterval(3)
                             .build("slingshotter")
