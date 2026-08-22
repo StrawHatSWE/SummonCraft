@@ -44,6 +44,9 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
         handheldItem(ModItems.SLINGSHOTTER_STAFF.get());
+
+        handheldItem(ModItems.SOUL_ESSENCE.get());
+        handheldItem(ModItems.SOUL_CRYSTAL.get());
     }
 
     // Helper method to generate model JSON files for custom texture names

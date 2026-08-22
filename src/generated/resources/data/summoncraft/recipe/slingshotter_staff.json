@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "C": {
+      "item": "summoncraft:soul_crystal"
+    },
+    "I": {
+      "item": "summoncraft:slingshot"
+    },
+    "L": {
+      "item": "minecraft:leather_helmet"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " L ",
+    "ICB",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "summoncraft:slingshotter_staff"
+  }
+}

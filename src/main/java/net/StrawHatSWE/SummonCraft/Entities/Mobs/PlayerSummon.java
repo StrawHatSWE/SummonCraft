@@ -95,4 +95,13 @@ public abstract class PlayerSummon extends PathfinderMob {
 
         return super.mobInteract(player, hand);
     }
+
+    @Override()
+    public void tick() {
+        super.tick();
+
+        if (!this.level().isClientSide()) {
+            this.setAggressive(this.getTarget() != null  && this.getTarget().isAlive());
+        }
+    }
 }

@@ -15,10 +15,12 @@ public class SlingshotterRenderer extends HumanoidMobRenderer<Slingshotter, Baby
 
     public SlingshotterRenderer(EntityRendererProvider.Context context) {
         super(context, new BabySkeletonModel<>(context.bakeLayer(BABY_SKELETON_LAYER)), 0.3F);
+
+        this.addLayer(new BabySkeletonClothingLayer<>(this));
     }
 
     @Override
     public ResourceLocation getTextureLocation(Slingshotter entity) {
-        return SKELETON_TEXTURE; // Returns baby_skeleton_base.png safely now
+        return SKELETON_TEXTURE;
     }
 }

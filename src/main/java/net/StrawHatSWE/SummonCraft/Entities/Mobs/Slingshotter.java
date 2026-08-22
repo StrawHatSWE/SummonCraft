@@ -1,6 +1,7 @@
 package net.StrawHatSWE.SummonCraft.Entities.Mobs;
 
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.*;
+import net.StrawHatSWE.SummonCraft.Goals.NoTeleportFollowOwnerGoal;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
 
 import net.minecraft.sounds.SoundEvents;
@@ -45,6 +46,9 @@ public class Slingshotter extends PlayerSummon implements RangedAttackMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
+
+        this.goalSelector.addGoal(0, new NoTeleportFollowOwnerGoal(this, 1.5D, 10.0F, 2.0F));
+
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25D, 30, 15.0F));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
@@ -85,10 +89,6 @@ public class Slingshotter extends PlayerSummon implements RangedAttackMob {
     public void performRangedAttack(LivingEntity livingEntity, float v) {
         ItemStack ammo = Slingshotter.ammo.get(RandomUtils.nextInt(0, Slingshotter.ammo.size()));
         AbstractArrow projectile = this.getArrow(ammo);
-
-        System.out.println("ammo: " + ammo);
-        System.out.println("projectile: " + projectile);
-
 
         double d0 = livingEntity.getX() - this.getX();
         double d1 = livingEntity.getY(0.3333333333333333) - projectile.getY();

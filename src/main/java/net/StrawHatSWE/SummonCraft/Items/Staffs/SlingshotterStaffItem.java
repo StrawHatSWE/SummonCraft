@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -36,6 +37,13 @@ public class SlingshotterStaffItem extends SummonStaffItem {
             PlayerSummonData summonData = player.getData(ModAttachments.SUMMON_DATA);
 
             assert summon != null;
+
+            ItemStack staff = context.getItemInHand();
+            staff.hurtAndBreak(
+                    1,
+                    player,
+                    context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
+            );
 
             BlockPos clickedPos = context.getClickedPos();
             Direction clickedFace = context.getClickedFace();

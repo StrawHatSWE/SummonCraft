@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textureSize": [64, 64],
-	"texture": "summoncraft:textures/entity/baby_skeletons/baby_skeleton_base.png",
+	"texture": "summoncraft:baby_skeleton_base.png",
 	"models": [
 		{
 			"part": "head",

@@ -99,6 +99,13 @@ public class BabySkeletonModel<T extends Slingshotter> extends HumanoidModel<T> 
         this.leftLeg.y = 18.0F;
         this.leftLeg.x = 1.0F;
         this.leftLeg.z = 0.0F;
+
+        if (entity.isAggressive()) {
+            float rotationFactor = (float) (-90 * 3.14/180);
+            this.rightArm.xRot = rotationFactor;
+            this.leftArm.xRot = rotationFactor;
+
+        }
     }
 
     @Override

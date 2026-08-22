@@ -57,6 +57,11 @@ public class SummonCraft {
             event.accept(ModItems.SLINGSHOT.get());
             event.accept(ModItems.SLINGSHOTTER_STAFF.get());
         }
+
+        if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            event.accept(ModItems.SOUL_ESSENCE.get());
+            event.accept(ModItems.SOUL_CRYSTAL.get());
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

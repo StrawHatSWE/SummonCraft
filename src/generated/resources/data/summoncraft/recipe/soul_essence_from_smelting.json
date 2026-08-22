@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 2000,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "minecraft:soul_sand"
+  },
+  "result": {
+    "count": 1,
+    "id": "summoncraft:soul_essence"
+  }
+}
