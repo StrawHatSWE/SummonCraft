@@ -22,6 +22,5 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Add block tags here when you create blocks
     }
 }

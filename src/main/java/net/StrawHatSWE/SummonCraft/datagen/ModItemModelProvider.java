@@ -17,10 +17,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        // Generates the base handheld model (parent: minecraft:item/handheld)
         handheldItem(ModItems.SLINGSHOT.get());
 
-        // Generates pulling/charging models for property overrides
         ModelFile pulling0 = handheldItem("slingshot_pulling_0");
         ModelFile pulling1 = handheldItem("slingshot_pulling_1");
         ModelFile pulling2 = handheldItem("slingshot_pulling_2");

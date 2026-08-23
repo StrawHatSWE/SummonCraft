@@ -110,7 +110,6 @@ public class BabySkeletonModel<T extends Slingshotter> extends HumanoidModel<T> 
 
     @Override
     public void translateToHand(HumanoidArm arm, PoseStack poseStack) {
-        // 1. Let the parent class apply the arm's rotation and position
         super.translateToHand(arm, poseStack);
 
         poseStack.translate(0.0D, -0.0625D, 0.0D);
