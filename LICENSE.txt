@@ -1,0 +1,14 @@
+Copyright (c) 2026 StrawHatSWE/BaanCraft
+
+1. PERMISSIONS:
+   - Redistribution: You are free to share, host, reupload, and distribute the compiled binary (.jar file) of this mod.
+   - Modpacks: You are free to include this mod in any free or commercial modpack.
+   - Media: You are free to showcase, review, and stream this mod on any public platform (YouTube, Twitch, etc.) and monetize that media content.
+
+2. SOURCE CODE RESTRICTIONS:
+   - No Modification: You MAY NOT modify, adapt, alter, or create derivative works based on this software's source code or compiled files.
+   - No Reverse Engineering: You MAY NOT decompile, reverse-engineer, or disassemble this software to extract its source code, algorithms, or assets for use in other projects.
+   - Proprietary Code: The source code remains private and proprietary to the copyright holder.
+
+3. DISCLAIMER OF WARRANTY:
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
