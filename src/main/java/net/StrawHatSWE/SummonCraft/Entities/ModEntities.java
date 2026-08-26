@@ -1,7 +1,7 @@
 package net.StrawHatSWE.SummonCraft.Entities;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.FriendlySlime;
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slingshotter;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.Slingshotter;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.CobblestoneProjectileEntity;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.DirtProjectileEntity;
 import net.StrawHatSWE.SummonCraft.SummonCraft;

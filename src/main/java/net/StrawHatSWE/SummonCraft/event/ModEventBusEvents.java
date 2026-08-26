@@ -1,10 +1,9 @@
 package net.StrawHatSWE.SummonCraft.event;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.FriendlySlime;
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slingshotter;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.Slingshotter;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;

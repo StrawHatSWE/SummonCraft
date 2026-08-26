@@ -1,8 +1,7 @@
-package net.StrawHatSWE.SummonCraft.Entities.Mobs;
+package net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.StrawHatSWE.SummonCraft.SummonCraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

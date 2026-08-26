@@ -1,11 +1,9 @@
 package net.StrawHatSWE.SummonCraft.Goals;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.PlayerSummon;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.UUID;
 
 public class NoTeleportFollowOwnerGoal extends Goal {
     protected final PlayerSummon summon;

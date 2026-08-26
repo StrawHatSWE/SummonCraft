@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 public abstract class PlayerSummon extends PathfinderMob {
-    Predicate<LivingEntity> targetPredicate = target ->
+    public Predicate<LivingEntity> targetPredicate = target ->
             target instanceof Enemy
                     && !(target instanceof Creeper)
                     && !(target instanceof PlayerSummon);

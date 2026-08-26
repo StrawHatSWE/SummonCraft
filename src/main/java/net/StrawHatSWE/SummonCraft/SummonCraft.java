@@ -3,6 +3,7 @@ package net.StrawHatSWE.SummonCraft;
 import net.StrawHatSWE.SummonCraft.Attachments.ModAttachments;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
+import net.StrawHatSWE.SummonCraft.datagen.ModLootModifiers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -38,6 +39,8 @@ public class SummonCraft {
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -47,6 +50,7 @@ public class SummonCraft {
         if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
             event.accept(ModItems.SLINGSHOT.get());
             event.accept(ModItems.SLINGSHOTTER_STAFF.get());
+            event.accept(ModItems.SLIME_STAFF.get());
         }
 
         if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {

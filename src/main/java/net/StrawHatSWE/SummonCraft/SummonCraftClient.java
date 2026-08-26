@@ -1,10 +1,12 @@
 package net.StrawHatSWE.SummonCraft;
 
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.*;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.BabySkeletonModel;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.SlingshotterRenderer;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlimeModel;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlimeRenderer;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
-import net.minecraft.client.renderer.entity.SkeletonRenderer;
-import net.minecraft.client.renderer.entity.SlimeRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;

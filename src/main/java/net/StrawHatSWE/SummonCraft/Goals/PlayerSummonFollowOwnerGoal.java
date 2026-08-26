@@ -1,6 +1,6 @@
 package net.StrawHatSWE.SummonCraft.Goals;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.PlayerSummon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
