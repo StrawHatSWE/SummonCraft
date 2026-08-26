@@ -37,6 +37,10 @@ public abstract class PlayerSummon extends PathfinderMob {
         this.ownerUUID = player == null ? null : player.getUUID();
     }
 
+    public Player getOwner(Level level) {
+        return this.getOwnerUUID() == null ? null : level.getPlayerByUUID(this.getOwnerUUID());
+    }
+
     public UUID getOwnerUUID() {
         return this.ownerUUID;
     }
@@ -111,12 +115,20 @@ public abstract class PlayerSummon extends PathfinderMob {
     public void tick() {
         super.tick();
 
+        if (this.getOwnerUUID() != null) {
+            PlayerSummonData data = this.getOwner().getData(ModAttachments.SUMMON_DATA);
+            if (data.isMarkedForDesummon(this.getUUID())) {
+                data.consumeDesummonMark(this.getUUID());
+                this.discard();
+            }
+        }
+
         if (!this.level().isClientSide()) {
             this.setAggressive(this.getTarget() != null  && this.getTarget().isAlive());
         }
     }
 
     public Player getOwner() {
-        return this.level().getPlayerByUUID(this.getOwnerUUID());
+        return this.getOwnerUUID()== null ? null : this.level().getPlayerByUUID(this.getOwnerUUID());
     }
 }

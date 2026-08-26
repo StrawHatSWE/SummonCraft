@@ -20,13 +20,9 @@ public class NoTeleportFollowOwnerGoal extends Goal {
         this.minDistance = minDistance;
     }
 
-    protected Player getSummonPlayer() {
-        return summon.level().getPlayerByUUID(summon.getOwnerUUID());
-    }
-
     @Override
     public boolean canUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
 
         if (player != null
                 && !player.isSpectator()
@@ -39,7 +35,7 @@ public class NoTeleportFollowOwnerGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || !player.isAlive()) {
             return false;
         }
@@ -49,7 +45,7 @@ public class NoTeleportFollowOwnerGoal extends Goal {
 
     @Override
     public void tick() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player != null) {
             this.summon.getLookControl().setLookAt(player, 10.0F, (float)this.summon.getMaxHeadXRot());
             this.summon.getNavigation().moveTo(player, this.speed);

@@ -33,7 +33,7 @@ public class SlimeNoTeleportFollowOwnerGoal extends NoTeleportFollowOwnerGoal {
 
     @Override
     public void tick() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player != null) {
             double dx = player.getX() - this.summon.getX();
             double dz = player.getZ() - this.summon.getZ();
@@ -50,7 +50,7 @@ public class SlimeNoTeleportFollowOwnerGoal extends NoTeleportFollowOwnerGoal {
 
     @Override
     public boolean canUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || player.isSpectator() || !player.isAlive()) {
             return false;
         }
@@ -75,7 +75,7 @@ public class SlimeNoTeleportFollowOwnerGoal extends NoTeleportFollowOwnerGoal {
 
     @Override
     public boolean canContinueToUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || !player.isAlive()) {
             return false;
         }

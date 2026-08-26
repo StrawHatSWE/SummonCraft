@@ -4,13 +4,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerSummonData {
     private int baseMaxSummons = 3;
     private final List<UUID> summons = new ArrayList<>();
+    private final Set<UUID> markedForDesummon = new HashSet<>();
 
     public PlayerSummonData() {}
 
@@ -24,7 +23,12 @@ public class PlayerSummonData {
 
             if (summons.size() > getActualMaximum()) {
                 Entity firstSummon = serverLevel.getEntity(summons.get(0));
-                firstSummon.discard();
+
+                if (firstSummon != null) {
+                    firstSummon.discard();
+                } else {
+                    markedForDesummon.add(summons.get(0));
+                }
 
                 summons.remove(0);
             }
@@ -48,5 +52,13 @@ public class PlayerSummonData {
 
             summons.clear();
         }
+    }
+
+    public boolean isMarkedForDesummon(UUID uuid) {
+        return this.markedForDesummon.contains(uuid);
+    }
+
+    public void consumeDesummonMark(UUID uuid) {
+        this.markedForDesummon.remove(uuid);
     }
 }

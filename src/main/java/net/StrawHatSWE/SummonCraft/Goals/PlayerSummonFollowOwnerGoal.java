@@ -31,13 +31,9 @@ public class PlayerSummonFollowOwnerGoal extends Goal {
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
-    protected Player getSummonPlayer() {
-        return this.summon.level().getPlayerByUUID(this.summon.getOwnerUUID());
-    }
-
     protected boolean checkAndHandleTarget() {LivingEntity target = this.summon.getTarget();
         if (target != null && target.isAlive()) {
-            Player player = getSummonPlayer();
+            Player player = summon.getOwner();
 
             if (this.summon.distanceToSqr(target) > this.maxTargetDistanceSqr) {
                 this.summon.setTarget(null);
@@ -58,7 +54,7 @@ public class PlayerSummonFollowOwnerGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || player.isSpectator() || !player.isAlive()) {
             return false;
         }
@@ -83,7 +79,7 @@ public class PlayerSummonFollowOwnerGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || !player.isAlive()) {
             return false;
         }
@@ -108,7 +104,7 @@ public class PlayerSummonFollowOwnerGoal extends Goal {
 
     @Override
     public void tick() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null) return;
 
         if (this.isRetreating && this.summon.getTarget() != null) {
@@ -174,7 +170,7 @@ public class PlayerSummonFollowOwnerGoal extends Goal {
     public void stop() {
         this.summon.getNavigation().stop();
 
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player != null) {
             double halfMaxDistSqr = (this.maxDistance * 0.5D) * (this.maxDistance * 0.5D);
             if (this.summon.distanceToSqr(player) <= halfMaxDistSqr) {
