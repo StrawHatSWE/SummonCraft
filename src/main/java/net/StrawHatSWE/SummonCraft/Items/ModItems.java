@@ -1,6 +1,7 @@
 package net.StrawHatSWE.SummonCraft.Items;
 
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
+import net.StrawHatSWE.SummonCraft.Items.Staffs.SlimeStaffItem;
 import net.StrawHatSWE.SummonCraft.Items.Staffs.SlingshotterStaffItem;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
 import net.minecraft.world.item.Item;
@@ -32,5 +33,11 @@ public class ModItems {
             "soul_crystal",
             properties -> new SoulCrystalItem(properties),
             new Item.Properties()
+    );
+
+    public static final DeferredItem<Item> SLIME_STAFF = ITEMS.registerItem(
+            "slime_staff",
+            properties -> new SlimeStaffItem(ModEntities.FRIENDLY_SLIME, properties),
+            new Item.Properties().durability(256)
     );
 }

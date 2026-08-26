@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -18,8 +19,14 @@ import net.neoforged.neoforge.attachment.AttachmentType;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public abstract class PlayerSummon extends PathfinderMob {
+    Predicate<LivingEntity> targetPredicate = target ->
+            target instanceof Enemy
+                    && !(target instanceof Creeper)
+                    && !(target instanceof PlayerSummon);
+
     private @Nullable UUID ownerUUID;
 
     protected PlayerSummon(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -92,6 +99,10 @@ public abstract class PlayerSummon extends PathfinderMob {
                 return InteractionResult.sidedSuccess(this.level().isClientSide());
             }
         }
+        else if (this.getOwnerUUID() == null) {
+            this.discard();
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
+        }
 
         return super.mobInteract(player, hand);
     }
@@ -103,5 +114,9 @@ public abstract class PlayerSummon extends PathfinderMob {
         if (!this.level().isClientSide()) {
             this.setAggressive(this.getTarget() != null  && this.getTarget().isAlive());
         }
+    }
+
+    public Player getOwner() {
+        return this.level().getPlayerByUUID(this.getOwnerUUID());
     }
 }

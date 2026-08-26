@@ -36,7 +36,7 @@ public class SummonCraft {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         ModItems.ITEMS.register(modEventBus);
-        ModEntities.ENTITY_TYPES.register(modEventBus); // Register entity types
+        ModEntities.ENTITY_TYPES.register(modEventBus);
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
     }
 

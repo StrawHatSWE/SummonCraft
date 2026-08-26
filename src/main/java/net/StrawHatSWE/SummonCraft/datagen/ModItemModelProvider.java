@@ -42,6 +42,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
         handheldItem(ModItems.SLINGSHOTTER_STAFF.get());
+        handheldItem(ModItems.SLIME_STAFF.get());
 
         handheldItem(ModItems.SOUL_ESSENCE.get());
         handheldItem(ModItems.SOUL_CRYSTAL.get());

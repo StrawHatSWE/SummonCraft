@@ -7,4 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 public class ModLayers {
     public static final ModelLayerLocation BABY_SKELETON_LAYER =
             new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(SummonCraft.MOD_ID, "baby_skeleton"), "main");
+
+    public static final ModelLayerLocation FRIENDLY_SLIME_LAYER =
+            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(SummonCraft.MOD_ID, "friendly_slime"), "main");
 }

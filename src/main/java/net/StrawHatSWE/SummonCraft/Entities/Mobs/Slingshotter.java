@@ -29,11 +29,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Slingshotter extends PlayerSummon implements RangedAttackMob {
-    Predicate<LivingEntity> targetPredicate = target ->
-            target instanceof Enemy
-                    && !(target instanceof Creeper)
-                    && !(target instanceof PlayerSummon);
-
     public Slingshotter(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
