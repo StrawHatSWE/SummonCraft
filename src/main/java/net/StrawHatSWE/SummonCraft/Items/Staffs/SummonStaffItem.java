@@ -5,6 +5,7 @@ import net.StrawHatSWE.SummonCraft.Attachments.PlayerSummonData;
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.PlayerSummon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -65,7 +66,9 @@ public class SummonStaffItem extends Item {
                     0.0F
             );
 
-            summonData.addSummon(level, summon.getUUID());
+            if (player instanceof ServerPlayer serverPlayer) {
+                summonData.addSummon(serverPlayer, level, summon.getUUID());
+            }
 
             summon.setOwner(context.getPlayer());
 

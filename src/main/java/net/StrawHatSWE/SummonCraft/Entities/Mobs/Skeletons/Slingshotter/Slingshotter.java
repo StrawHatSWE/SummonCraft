@@ -81,6 +81,12 @@ public class Slingshotter extends PlayerSummon implements RangedAttackMob {
         ItemStack ammo = Slingshotter.ammo.get(RandomUtils.nextInt(0, Slingshotter.ammo.size()));
         AbstractArrow projectile = this.getArrow(ammo);
 
+        Player owner = this.getOwner();
+
+        if (owner != null) {
+            projectile.setOwner(owner);
+        }
+
         double d0 = livingEntity.getX() - this.getX();
         double d1 = livingEntity.getY(0.3333333333333333) - projectile.getY();
         double d2 = livingEntity.getZ() - this.getZ();

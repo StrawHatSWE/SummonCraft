@@ -2,6 +2,8 @@ package net.StrawHatSWE.SummonCraft.Entities.Mobs;
 
 import net.StrawHatSWE.SummonCraft.Attachments.ModAttachments;
 import net.StrawHatSWE.SummonCraft.Attachments.PlayerSummonData;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,6 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
@@ -43,6 +46,15 @@ public abstract class PlayerSummon extends PathfinderMob {
 
     public UUID getOwnerUUID() {
         return this.ownerUUID;
+    }
+
+    @Override
+    public LivingEntity getKillCredit() {
+        Player owner = getOwner();
+        if (owner != null && owner instanceof ServerPlayer serverPlayer) {
+            return serverPlayer;
+        }
+        return super.getKillCredit();
     }
 
     @Override
@@ -94,11 +106,11 @@ public abstract class PlayerSummon extends PathfinderMob {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (player.isCrouching() && hand == InteractionHand.MAIN_HAND) {
 
-            if (!this.level().isClientSide() && this.getOwnerUUID() == player.getUUID()) {
+            if (!this.level().isClientSide() && this.getOwnerUUID() == player.getUUID() && player instanceof ServerPlayer serverPlayer) {
                 PlayerSummonData summonData = player.getData(ModAttachments.SUMMON_DATA);
 
                 this.discard();
-                summonData.removeSummon(this.getUUID());
+                summonData.removeSummon(serverPlayer, this.getUUID());
 
                 return InteractionResult.sidedSuccess(this.level().isClientSide());
             }
