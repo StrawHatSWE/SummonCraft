@@ -1,16 +1,15 @@
 package net.StrawHatSWE.SummonCraft.Goals;
 
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
 import net.StrawHatSWE.SummonCraft.Entities.Mobs.PlayerSummon;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.UUID;
-
 public class NoTeleportFollowOwnerGoal extends Goal {
-    private final PlayerSummon summon;
-    private final double speed;
-    private final float maxDistance;
-    private final float minDistance;
+    protected final PlayerSummon summon;
+    protected final double speed;
+    protected final float maxDistance;
+    protected final float minDistance;
 
     public NoTeleportFollowOwnerGoal(PlayerSummon summon, double speed, float maxDistance, float minDistance) {
         this.summon = summon;
@@ -19,13 +18,9 @@ public class NoTeleportFollowOwnerGoal extends Goal {
         this.minDistance = minDistance;
     }
 
-    private Player getSummonPlayer() {
-        return summon.level().getPlayerByUUID(summon.getOwnerUUID());
-    }
-
     @Override
     public boolean canUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
 
         if (player != null
                 && !player.isSpectator()
@@ -38,20 +33,25 @@ public class NoTeleportFollowOwnerGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player == null || !player.isAlive()) {
             return false;
         }
-        return !this.summon.getNavigation().isDone()
-                && this.summon.distanceToSqr(player) > (double)(this.minDistance * this.minDistance);
+
+        return this.summon.distanceToSqr(player) > (double)(this.minDistance * this.minDistance);
     }
 
     @Override
     public void tick() {
-        Player player = getSummonPlayer();
+        Player player = summon.getOwner();
         if (player != null) {
             this.summon.getLookControl().setLookAt(player, 10.0F, (float)this.summon.getMaxHeadXRot());
             this.summon.getNavigation().moveTo(player, this.speed);
+
+            if (this.summon.getMoveControl() instanceof FriendlySlime.FriendlySlimeMoveControl slimeMoveControl) {
+                slimeMoveControl.setDirection(this.summon.getYRot(), false);
+                slimeMoveControl.setWantedMovement(this.speed);
+            }
         }
     }
 

@@ -1,5 +1,6 @@
-package net.StrawHatSWE.SummonCraft.Entities.Mobs;
+package net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter;
 
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.PlayerSummon;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.*;
 import net.StrawHatSWE.SummonCraft.Goals.NoTeleportFollowOwnerGoal;
 import net.StrawHatSWE.SummonCraft.Items.ModItems;
@@ -8,17 +9,13 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Creeper;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -26,14 +23,8 @@ import org.apache.commons.lang3.RandomUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Slingshotter extends PlayerSummon implements RangedAttackMob {
-    Predicate<LivingEntity> targetPredicate = target ->
-            target instanceof Enemy
-                    && !(target instanceof Creeper)
-                    && !(target instanceof PlayerSummon);
-
     public Slingshotter(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
@@ -89,6 +80,12 @@ public class Slingshotter extends PlayerSummon implements RangedAttackMob {
     public void performRangedAttack(LivingEntity livingEntity, float v) {
         ItemStack ammo = Slingshotter.ammo.get(RandomUtils.nextInt(0, Slingshotter.ammo.size()));
         AbstractArrow projectile = this.getArrow(ammo);
+
+        Player owner = this.getOwner();
+
+        if (owner != null) {
+            projectile.setOwner(owner);
+        }
 
         double d0 = livingEntity.getX() - this.getX();
         double d1 = livingEntity.getY(0.3333333333333333) - projectile.getY();

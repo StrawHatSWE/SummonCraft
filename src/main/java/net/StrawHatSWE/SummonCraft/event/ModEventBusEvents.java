@@ -1,6 +1,7 @@
 package net.StrawHatSWE.SummonCraft.event;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slingshotter;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.Slingshotter;
 import net.StrawHatSWE.SummonCraft.Entities.ModEntities;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,5 +13,6 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.SLINGSHOTTER.get(), Slingshotter.createAttributes().build());
+        event.put(ModEntities.FRIENDLY_SLIME.get(), FriendlySlime.createAttributes().build());
     }
 }

@@ -1,4 +1,4 @@
-package net.StrawHatSWE.SummonCraft.Entities.Mobs;
+package net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

@@ -40,5 +40,10 @@ public class DataGenerators {
                 event.includeServer(),
                 new ModRecipeProvider(packOutput, lookupProvider)
         );
+
+        generator.addProvider(
+                event.includeServer(),
+                new SummonCraftGlobalLootModifierProvider(packOutput, lookupProvider)
+        );
     }
 }
