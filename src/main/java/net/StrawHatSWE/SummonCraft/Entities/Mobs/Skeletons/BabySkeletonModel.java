@@ -1,9 +1,9 @@
-package net.StrawHatSWE.SummonCraft.Entities.Mobs;
+package net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.Slingshotter;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;

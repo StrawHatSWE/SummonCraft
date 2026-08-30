@@ -14,8 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-import static net.StrawHatSWE.SummonCraft.Items.ModItems.SLINGSHOT;
-import static net.StrawHatSWE.SummonCraft.Items.ModItems.SLINGSHOTTER_STAFF;
+import static net.StrawHatSWE.SummonCraft.Items.ModItems.*;
 
 public class ModItemTagProvider extends ItemTagsProvider {
 
@@ -32,7 +31,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("minecraft", "enchantable/durability")))
                 .add(SLINGSHOT.get())
-                .add(SLINGSHOTTER_STAFF.get());
+                .add(SLINGSHOTTER_STAFF.get())
+                .add(SLIME_STAFF.get());
 
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("minecraft", "enchantable/bow")))
                 .add(SLINGSHOT.get());

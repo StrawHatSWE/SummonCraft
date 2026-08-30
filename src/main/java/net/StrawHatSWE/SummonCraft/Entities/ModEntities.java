@@ -1,6 +1,7 @@
 package net.StrawHatSWE.SummonCraft.Entities;
 
-import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slingshotter;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Slimes.FriendlySlime;
+import net.StrawHatSWE.SummonCraft.Entities.Mobs.Skeletons.Slingshotter.Slingshotter;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.CobblestoneProjectileEntity;
 import net.StrawHatSWE.SummonCraft.Entities.Projectiles.DirtProjectileEntity;
 import net.StrawHatSWE.SummonCraft.SummonCraft;
@@ -38,5 +39,14 @@ public class ModEntities {
                             .clientTrackingRange(8)
                             .updateInterval(3)
                             .build("slingshotter")
+            );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<FriendlySlime>> FRIENDLY_SLIME =
+            ENTITY_TYPES.register("friendly_slime", () ->
+                    EntityType.Builder.<FriendlySlime>of(FriendlySlime::new, MobCategory.MISC)
+                            .sized(0.5F, 0.5F)
+                            .clientTrackingRange(12)
+                            .updateInterval(3)
+                            .build("friendly_slime")
             );
 }
